@@ -78,6 +78,10 @@ int sumOfNumber2(int i, int n)
         return 0;
     return i + sumOfNumber2(i + 1, n);
 }
+// 1) two pointer method 
+// 1) reverse array 
+
+
 
 int main()
 {
