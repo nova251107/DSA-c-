@@ -67,7 +67,6 @@ int sumOfNumber1(int n, int sum)
     }
     sum += n;
     return sumOfNumber1(n - 1, sum);
-    
 }
 // find sum of 1 to N
 /* this is a functional way for getiing ans
@@ -77,11 +76,43 @@ int sumOfNumber2(int i, int n)
     if (i > n)
         return 0;
     return i + sumOfNumber2(i + 1, n);
+    // in main call (arr,0,n)
 }
-// 1) two pointer method 
-// 1) reverse array 
+// 1) two pointer method
+/*  use two pointer until they match or cross
+ */
+// 1) reverse array  (brute force )
+// time complexity is = o(n)
+void RevArray1(int arr[], int l, int r)
+{
+    if (l >= r)
+        return;
+    swap(arr[l], arr[r]);
+    RevArray1(arr, l + 1, r - 1);
+    // in main call (arr,0,n-1)
+}
+// 1) reverse array  (better code )
+// Time complexity = o(n) but more rediable
+void RevArray2(int arr[], int i, int n)
+{
+    if (i >= n / 2)
+        return;
+    swap(arr[i], arr[n - i - 1]);
+    RevArray2(arr, i + 1, n);
+    // in main call (arr,0,n)
+}
 
-
+// cheack string a palindorme
+// logic is last pair elements is not same then false otherwise is true
+bool palin_str(string a, int i, int n)
+{
+    if (i >= n / 2)
+        return true;
+    if (a[i] != a[n - i - 1])
+        return false;
+    return palin_str(a, i + 1, n);
+    // in main func call :- (string ,0,size(string))
+}
 
 int main()
 {
@@ -107,9 +138,46 @@ int main()
     cout << "print 1 to N odd number  :";
     printodd(n);
     cout << "\n";
-    cout << "print 1 to N sum   :"<<sumOfNumber1(n, 0);
-    
+    cout << "print 1 to N sum   :" << sumOfNumber1(n, 0);
+
     cout << "\n";
-    cout << "print 1 to N odd sum  :"<<sumOfNumber2(1, n);
-    
+    cout << "print 1 to N odd sum  :" << sumOfNumber2(1, n);
+    cout << "\n";
+    int arr[5] = {2, 3, 4, 5, 6};
+    cout << "before reversing array : " << "\n";
+    for (int i = 0; i < size(arr); i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    cout << "\n";
+    cout << "before reversing array : " << "\n";
+    RevArray1(arr, 0, size(arr) - 1);
+    for (int i = 0; i < size(arr); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << "\n"
+         << "after reversing again : ";
+    RevArray2(arr, 0, size(arr));
+    for (int i = 0; i < size(arr); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
+    string s = "madam";
+
+    cout << "cheack 'madam' is palindorme or not : ";
+    if (palin_str(s, 0, s.size()))
+        cout << "Palindrome"<<"\n";
+    else
+        cout << "Not Palindrome";
+    string y = "hahahes";
+    cout << "cheack 'hahahes' is palindorme or not : ";
+    if (palin_str(y, 0, y.size()))
+        cout << "Palindrome";
+    else
+        cout << "Not Palindrome"<<"\n";
+
+    cout << "\n";
 }
