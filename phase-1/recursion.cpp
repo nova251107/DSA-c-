@@ -113,6 +113,23 @@ bool palin_str(string a, int i, int n)
     return palin_str(a, i + 1, n);
     // in main func call :- (string ,0,size(string))
 }
+// multiple recursion calls 
+// fibbonacci , factorial 
+int fibbonacci(int n)
+{
+    if (n < 2)
+       return n;
+    return fibbonacci(n-1)+fibbonacci(n-2); 
+    // in main call :- (n)  
+} 
+
+// factorial 
+int factorial(int n)
+{
+    if (n<=1)
+       return 1;
+    return (n)*factorial(n-1) ;  
+}
 
 int main()
 {
