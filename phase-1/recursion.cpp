@@ -197,4 +197,7 @@ int main()
         cout << "Not Palindrome"<<"\n";
 
     cout << "\n";
+    cout << "print nth term fibbonacci : "<<fibbonacci(n)<<"\n";
+    cout << "print nth term factorial  : "<<factorial(n)<<"\n";
+    return 0;
 }
