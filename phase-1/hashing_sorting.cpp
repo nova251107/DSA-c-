@@ -620,6 +620,101 @@ void MergeSort(vector<int> &arr, int low, int high)
     // merge both array
     MergeArr(arr, low, mid, high);
 }
+//================================================================================================================
+//================================================================================================================
+
+//========================================================
+// QUICK SORT :- divide and conquore
+// T.C same but dont need extra spcae :- S.C ==> o(1)
+//========================================================
+
+/* :-
+        [STEP 1]
+first pick any random element in array
+after place it in  currect sorted array
+untill all array are sorted
+        [STEP 2]
+smaller are left
+larger are right
+        [STEP 3]
+recursion this step untill array sorted
+  */
+
+//==============================================================
+// QUICK SORT :- PSEUDOCODE
+//=============================================================
+/*
+quickSort (arr,low ,high )
+    if (low < high )
+       {
+        partition = partition_func(arr,low,high)
+        quickSort(arr,low,partition-1)
+        quickSort(arr,partition+1,high)
+         }
+*/
+//==============================================================
+// PARTITION FUNCTION :- pseudocode
+//=============================================================
+/*
+partition(arr,low,high)
+     pivot = arr[low]
+     i = low+1
+     j = high
+
+     while(i < j)
+        {
+            while(i <= high && arr[i]<=pivot)
+
+                    i++
+            while(j >= low && arr[j]>pivot )
+                    j--
+
+            if (i < j )
+                swap(arr[i],arr[j])
+        }
+         swap(arr[low],arr[j])
+    return j
+*/
+// partition function code
+int PartitionFunc(vector<int> &arr, int low, int high)
+{
+    int pivot = arr[low];
+    int i = low + 1;
+    int j = high;
+
+    while (i <= j)
+    {
+        while (i <= high && arr[i] <= pivot) // cheack i is less and i is also in range
+        {
+            i++;
+        }
+        while (j >= low && arr[j] > pivot) // cheack j is greter and j is also in range
+        {
+            j--;
+        }
+        if (i < j) // if both satisfied
+        {
+            swap(arr[i], arr[j]); // then swap their value
+        }
+    }
+    swap(arr[low], arr[j]); // here all element saparate and we easily find partition element
+    return j; // return partition element
+}
+// quick short code
+void QuickSort(vector<int> &arr, int low, int high)
+{
+    if (low < high)
+    {
+        int parti = PartitionFunc(arr, low, high);
+
+        // divide with partition
+
+        // sort first arrray thorugh recursion
+        QuickSort(arr, low, parti - 1);
+        // sort second array thorugh recursion
+        QuickSort(arr, parti + 1, high);
+    }
+}
 
 // =========================================================
 //                         MAIN
@@ -627,56 +722,198 @@ void MergeSort(vector<int> &arr, int low, int high)
 
 int main()
 {
-    /*   ios::sync_with_stdio(false);
-      cin.tie(nullptr);
-   */
-    /*
-        Uncomment the function you want to test.
-    */
+    int choice;
 
-    /*     hashingArray();
+    cout << "\n========================================\n";
+    cout << "          DSA PRACTICE MENU\n";
+    cout << "========================================\n";
 
-        hashingCharacterLowercase();
+    cout << "\n---------- HASHING ----------\n";
+    cout << "1. Hashing using Array\n";
+    cout << "2. Hashing Lowercase Characters\n";
+    cout << "3. Hashing All ASCII Characters\n";
+    cout << "4. Hashing using Map - Number\n";
+    cout << "5. Hashing using Map - String\n";
 
-        hashingCharacter();
+    cout << "\n---------- SORTING ----------\n";
+    cout << "6. Selection Sort\n";
+    cout << "7. Bubble Sort\n";
+    cout << "8. Insertion Sort\n";
+    cout << "9. Merge Sort\n";
+    cout << "10. Quick Sort\n";
 
-        hashingMapNumber();
+    cout << "\nEnter your choice: ";
+    cin >> choice;
 
-        hashingMapString(); */
-
-    int n;
-    cout << "enter a size of array :";
-    cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++)
+    switch (choice)
     {
-        cout << "enter a number :";
-        cin >> arr[i];
-        cout << "\n";
-    }
-    /*     selectionSort(arr, n);
-        cout << "after sort :- ";
-        for (int i = 0; i < n; i++)
-        {
-            cout << arr[i] << " ";
-        }
-        cout << "\n==================\n";
-        bubbleSort(arr, n);
-        cout << "after sort :- ";
+        // =========================
+        // HASHING
+        // =========================
 
-        for (int i = 0; i < n; i++)
-        {
-            cout << arr[i] << " ";
-        }
-        cout << "\n==================\n"; */
-    selectionSort(arr, n);
-    cout << "after sort :- ";
+        case 1:
+            hashingArray();
+            break;
 
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
+        case 2:
+            hashingCharacterLowercase();
+            break;
+
+        case 3:
+            hashingCharacter();
+            break;
+
+        case 4:
+            hashingMapNumber();
+            break;
+
+        case 5:
+            hashingMapString();
+            break;
+
+
+        // =========================
+        // SORTING
+        // =========================
+
+        case 6:
+        {
+            int n;
+
+            cout << "\nEnter size of array: ";
+            cin >> n;
+
+            int arr[n];
+
+            cout << "Enter elements: ";
+            for (int i = 0; i < n; i++)
+            {
+                cin >> arr[i];
+            }
+
+            selectionSort(arr, n);
+
+            cout << "After Selection Sort: ";
+            for (int i = 0; i < n; i++)
+            {
+                cout << arr[i] << " ";
+            }
+
+            break;
+        }
+
+
+        case 7:
+        {
+            int n;
+
+            cout << "\nEnter size of array: ";
+            cin >> n;
+
+            int arr[n];
+
+            cout << "Enter elements: ";
+            for (int i = 0; i < n; i++)
+            {
+                cin >> arr[i];
+            }
+
+            bubbleSort(arr, n);
+
+            cout << "After Bubble Sort: ";
+            for (int i = 0; i < n; i++)
+            {
+                cout << arr[i] << " ";
+            }
+
+            break;
+        }
+
+
+        case 8:
+        {
+            int n;
+
+            cout << "\nEnter size of array: ";
+            cin >> n;
+
+            int arr[n];
+
+            cout << "Enter elements: ";
+            for (int i = 0; i < n; i++)
+            {
+                cin >> arr[i];
+            }
+
+            InsertionSort(arr, n);
+
+            cout << "After Insertion Sort: ";
+            for (int i = 0; i < n; i++)
+            {
+                cout << arr[i] << " ";
+            }
+
+            break;
+        }
+
+
+        case 9:
+        {
+            int n;
+
+            cout << "\nEnter size of array: ";
+            cin >> n;
+
+            vector<int> arr(n);
+
+            cout << "Enter elements: ";
+            for (int i = 0; i < n; i++)
+            {
+                cin >> arr[i];
+            }
+
+            MergeSort(arr, 0, n - 1);
+
+            cout << "After Merge Sort: ";
+            for (int value : arr)
+            {
+                cout << value << " ";
+            }
+
+            break;
+        }
+
+
+        case 10:
+        {
+            int n;
+
+            cout << "\nEnter size of array: ";
+            cin >> n;
+
+            vector<int> arr(n);
+
+            cout << "Enter elements: ";
+            for (int i = 0; i < n; i++)
+            {
+                cin >> arr[i];
+            }
+
+            QuickSort(arr, 0, n - 1);
+
+            cout << "After Quick Sort: ";
+            for (int value : arr)
+            {
+                cout << value << " ";
+            }
+
+            break;
+        }
+
+
+        default:
+            cout << "\nInvalid choice!\n";
     }
-    cout << "\n==================\n";
 
     return 0;
 }
