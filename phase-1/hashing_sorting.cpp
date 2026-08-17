@@ -366,6 +366,23 @@ void hashingMapString()
              << "\" = " << frequencyMap[word] << '\n';
     }
 }
+//========================================================
+//          HASHING WITH UNORDERED MAP
+//==========================================================
+void hashUnorderedmap(vector<int> &arr)// already take input 
+{
+    unordered_map<int, int> mp;
+
+    for (int x : arr)
+    {
+        mp[x]++;
+    }
+
+    for (auto it : mp)
+    {
+        cout << it.first << " -> " << it.second << endl;
+    }
+}
 
 //========================================================
 // SELECTION SORT:- get min and swap it
@@ -424,7 +441,7 @@ after ;-  1, 5 , 7 , 8:- MAX ELEMENT AT LAST :- STOP
 same continue
 
 
-             */
+*/
 void bubbleSort(int arr[], int n)
 {
     int didswap = 0;
@@ -448,7 +465,7 @@ void bubbleSort(int arr[], int n)
 }
 
 // ======================================================
-//    SELECTION SORT :- cheack untill all part sort
+//    INSERTION SORT :- cheack untill all part sort
 // ======================================================
 
 /*
@@ -458,6 +475,7 @@ aftert cheack 3 element are sorted or not
 if not sorted
 until array complete
  */
+
 
 void InsertionSort(int arr[], int n)
 {
@@ -470,6 +488,7 @@ void InsertionSort(int arr[], int n)
         }
     }
 }
+
 
 // ======================================================
 //    MERGE SORT :- DIVIDE AND MERGE
@@ -698,7 +717,7 @@ int PartitionFunc(vector<int> &arr, int low, int high)
         }
     }
     swap(arr[low], arr[j]); // here all element saparate and we easily find partition element
-    return j; // return partition element
+    return j;               // return partition element
 }
 // quick short code
 void QuickSort(vector<int> &arr, int low, int high)
@@ -716,6 +735,17 @@ void QuickSort(vector<int> &arr, int low, int high)
     }
 }
 
+/* 
+| Topic              | Core idea / Crux                                                                 | Time Complexity                                               | Space Complexity                 |
+| ------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------------------------------- |
+| **Hashing**        | Store/fetch data using a **key → value** mapping for fast lookup                 | Average **O(1)** lookup/insert, Worst **O(n)**                | **O(n)**                         |
+| **Selection Sort** | Find minimum element from unsorted part and put it at the correct position       | Best **O(n²)**, Avg **O(n²)**, Worst **O(n²)**                | **O(1)**                         |
+| **Bubble Sort**    | Repeatedly compare adjacent elements and swap if they are in wrong order         | Best **O(n)***, Avg **O(n²)**, Worst **O(n²)**                | **O(1)**                         |
+| **Insertion Sort** | Take one element and insert it into its correct position in the sorted left part | Best **O(n)**, Avg **O(n²)**, Worst **O(n²)**                 | **O(1)**                         |
+| **Merge Sort**     | Divide array → sort both halves → merge sorted halves                            | Best **O(n log n)**, Avg **O(n log n)**, Worst **O(n log n)** | **O(n)**                         |
+| **Quick Sort**     | Choose pivot → partition → recursively sort left/right parts                     | Best **O(n log n)**, Avg **O(n log n)**, Worst **O(n²)**      | Avg **O(log n)**, Worst **O(n)** |
+
+ */
 // =========================================================
 //                         MAIN
 // =========================================================
@@ -751,168 +781,162 @@ int main()
         // HASHING
         // =========================
 
-        case 1:
-            hashingArray();
-            break;
+    case 1:
+        hashingArray();
+        break;
 
-        case 2:
-            hashingCharacterLowercase();
-            break;
+    case 2:
+        hashingCharacterLowercase();
+        break;
 
-        case 3:
-            hashingCharacter();
-            break;
+    case 3:
+        hashingCharacter();
+        break;
 
-        case 4:
-            hashingMapNumber();
-            break;
+    case 4:
+        hashingMapNumber();
+        break;
 
-        case 5:
-            hashingMapString();
-            break;
-
+    case 5:
+        hashingMapString();
+        break;
 
         // =========================
         // SORTING
         // =========================
 
-        case 6:
+    case 6:
+    {
+        int n;
+
+        cout << "\nEnter size of array: ";
+        cin >> n;
+
+        int arr[n];
+
+        cout << "Enter elements: ";
+        for (int i = 0; i < n; i++)
         {
-            int n;
-
-            cout << "\nEnter size of array: ";
-            cin >> n;
-
-            int arr[n];
-
-            cout << "Enter elements: ";
-            for (int i = 0; i < n; i++)
-            {
-                cin >> arr[i];
-            }
-
-            selectionSort(arr, n);
-
-            cout << "After Selection Sort: ";
-            for (int i = 0; i < n; i++)
-            {
-                cout << arr[i] << " ";
-            }
-
-            break;
+            cin >> arr[i];
         }
 
+        selectionSort(arr, n);
 
-        case 7:
+        cout << "After Selection Sort: ";
+        for (int i = 0; i < n; i++)
         {
-            int n;
-
-            cout << "\nEnter size of array: ";
-            cin >> n;
-
-            int arr[n];
-
-            cout << "Enter elements: ";
-            for (int i = 0; i < n; i++)
-            {
-                cin >> arr[i];
-            }
-
-            bubbleSort(arr, n);
-
-            cout << "After Bubble Sort: ";
-            for (int i = 0; i < n; i++)
-            {
-                cout << arr[i] << " ";
-            }
-
-            break;
+            cout << arr[i] << " ";
         }
 
+        break;
+    }
 
-        case 8:
+    case 7:
+    {
+        int n;
+
+        cout << "\nEnter size of array: ";
+        cin >> n;
+
+        int arr[n];
+
+        cout << "Enter elements: ";
+        for (int i = 0; i < n; i++)
         {
-            int n;
-
-            cout << "\nEnter size of array: ";
-            cin >> n;
-
-            int arr[n];
-
-            cout << "Enter elements: ";
-            for (int i = 0; i < n; i++)
-            {
-                cin >> arr[i];
-            }
-
-            InsertionSort(arr, n);
-
-            cout << "After Insertion Sort: ";
-            for (int i = 0; i < n; i++)
-            {
-                cout << arr[i] << " ";
-            }
-
-            break;
+            cin >> arr[i];
         }
 
+        bubbleSort(arr, n);
 
-        case 9:
+        cout << "After Bubble Sort: ";
+        for (int i = 0; i < n; i++)
         {
-            int n;
-
-            cout << "\nEnter size of array: ";
-            cin >> n;
-
-            vector<int> arr(n);
-
-            cout << "Enter elements: ";
-            for (int i = 0; i < n; i++)
-            {
-                cin >> arr[i];
-            }
-
-            MergeSort(arr, 0, n - 1);
-
-            cout << "After Merge Sort: ";
-            for (int value : arr)
-            {
-                cout << value << " ";
-            }
-
-            break;
+            cout << arr[i] << " ";
         }
 
+        break;
+    }
 
-        case 10:
+    case 8:
+    {
+        int n;
+
+        cout << "\nEnter size of array: ";
+        cin >> n;
+
+        int arr[n];
+
+        cout << "Enter elements: ";
+        for (int i = 0; i < n; i++)
         {
-            int n;
-
-            cout << "\nEnter size of array: ";
-            cin >> n;
-
-            vector<int> arr(n);
-
-            cout << "Enter elements: ";
-            for (int i = 0; i < n; i++)
-            {
-                cin >> arr[i];
-            }
-
-            QuickSort(arr, 0, n - 1);
-
-            cout << "After Quick Sort: ";
-            for (int value : arr)
-            {
-                cout << value << " ";
-            }
-
-            break;
+            cin >> arr[i];
         }
 
+        InsertionSort(arr, n);
 
-        default:
-            cout << "\nInvalid choice!\n";
+        cout << "After Insertion Sort: ";
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << " ";
+        }
+
+        break;
+    }
+
+    case 9:
+    {
+        int n;
+
+        cout << "\nEnter size of array: ";
+        cin >> n;
+
+        vector<int> arr(n);
+
+        cout << "Enter elements: ";
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+
+        MergeSort(arr, 0, n - 1);
+
+        cout << "After Merge Sort: ";
+        for (int value : arr)
+        {
+            cout << value << " ";
+        }
+
+        break;
+    }
+
+    case 10:
+    {
+        int n;
+
+        cout << "\nEnter size of array: ";
+        cin >> n;
+
+        vector<int> arr(n);
+
+        cout << "Enter elements: ";
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+
+        QuickSort(arr, 0, n - 1);
+
+        cout << "After Quick Sort: ";
+        for (int value : arr)
+        {
+            cout << value << " ";
+        }
+
+        break;
+    }
+
+    default:
+        cout << "\nInvalid choice!\n";
     }
 
     return 0;
