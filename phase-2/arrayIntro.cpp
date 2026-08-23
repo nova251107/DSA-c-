@@ -310,38 +310,8 @@ int LinearSearch(vector<int> &arr, int n)
     return -1;
 }
 // union of two sorted array
-set<int> UnionArray(vector<int> &arr1, vector<int> &arr2)
-{
-    int j = 0, i = 0;
-    set<int> uni;
-    if (i < arr1.size() && j < arr2.size())
-        for (int i = 0; i < arr1.size();)
-        {
-            if (arr1[i] < arr2[j])
-            {
-                uni.insert(arr1[i]);
-                i++;
-            }
-            if (arr2[j] < arr1[i])
-            {
-                if (j < arr2.size())
-                    uni.insert(arr2[j]);
-                j++;
-            }
-            if (arr1[i] == arr2[j])
-            {
-                uni.insert(arr1[i]);
-                i++, j++;
-            }
-        }
-    if (i < arr1.size())
-        uni.insert(arr1[i]);
-        i++;
-    if (j < arr2.size())
-        uni.insert(arr2[i]);
-       j++;
-    return uni;
-}
+
+
 int main()
 {
 
