@@ -447,13 +447,14 @@ void bubbleSort(int arr[], int n)
     int didswap = 0;
     for (int i = n - 1; i >= 1; i--)
     {
+        didswap = 0;
 
-        for (int j = 0; j <= i; j++)
+        for (int j = 0; j < i; j++)
         {
             if (arr[j] > arr[j + 1])
             {
                 swap(arr[j], arr[j + 1]);
-                didswap == 1;
+                didswap = 1;
             }
         }
         if (didswap == 0)
