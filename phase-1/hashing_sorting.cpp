@@ -474,8 +474,7 @@ if not then sorted
 aftert cheack 3 element are sorted or not
 if not sorted
 until array complete
- */
-
+*/
 
 void InsertionSort(int arr[], int n)
 {
@@ -485,6 +484,7 @@ void InsertionSort(int arr[], int n)
         while (j > 0 && arr[j - 1] > arr[j])
         {
             swap(arr[j - 1], arr[j]);
+            j--;
         }
     }
 }
