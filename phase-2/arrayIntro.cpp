@@ -311,7 +311,221 @@ int LinearSearch(vector<int> &arr, int n)
 }
 // union of two sorted array
 
+// brute force
+/*
+alorithem
+create a set STL
+put both value in set  o(n1logn) + o(n2 log n)
+after
+put set value in union array   o (n1 + n2)
+return it
 
+time complexity  :-o(n1logn) + o(n2 log n) +o (n1 + n2)
+space complexity :- O(n1+n2 ) to solve the problem
+                 :- O(n1+n2 ) to return the problem
+
+*/
+vector<int> sortedArray1(vector<int> a, vector<int> b)
+{
+    int n1 = a.size(); // store size as variable
+    int n2 = b.size();
+
+    set<int> st;
+
+    for (int i = 0; i < n1; i++)
+    {
+        st.insert(a[i]);
+    }
+    for (int i = 0; i < n2; i++)
+    {
+        st.insert(b[i]);
+    }
+    vector<int> ans;
+    for (auto it : st)
+    {
+        ans.push_back(it);
+    }
+    return ans;
+}
+
+//==========================================================================
+
+// optimal solution
+/*
+two pointer solution
+take two pointer i and j
+start with arr 1 i = 0 and arr 2 j = 0
+create a 0 size union
+while(i and j < n1 and n2)
+   compare both index
+      if( a1[i]<=a2[j])
+           if(unionsize ==0  or union.back != a1[i])
+                union.pushback(a1[i])
+                i++;
+      else
+        if(unionsize ==0  or union.back != a2[j])
+            union.pushback(a2[j])
+            j++;
+      if(i < n1 or j < n2 )
+          same as before
+
+    return union
+            */
+vector<int> sortedArray2(vector<int> a, vector<int> b)
+{
+    int i = 0;
+    int j = 0;
+    int n1 = a.size();
+    int n2 = b.size();
+
+    vector<int> unionarray;
+    while (i < n1 && j < n2)
+    {
+        if (a[i] <= b[j])
+        {
+            if (unionarray.size() == 0 or unionarray.back() != a[i])
+            {
+                unionarray.push_back(a[i]);
+            }
+            i++;
+        }
+        else if (unionarray.size() == 0 or unionarray.back() != b[j])
+        {
+            unionarray.push_back(b[j]);
+        }
+        j++;
+    }
+    while (i < n1)
+    {
+        if (unionarray.size() == 0 or unionarray.back() != a[i])
+        {
+            unionarray.push_back(a[i]);
+        }
+        i++;
+    }
+    while (j < n2)
+    {
+        if (unionarray.size() == 0 or unionarray.back() != b[j])
+        {
+            unionarray.push_back(b[j]);
+        }
+        j++;
+    }
+
+    return unionarray;
+}
+
+// intersection of array
+/*
+3 method
+1-> brute force
+visited n2 size all elements are zero
+start i = o to n1 in array 1
+    start i = 0 to n2 in array 2
+       if (vis j == 0 && a[i]==b[j])
+            ans.add(a[i])
+            vis[j]=1
+            break;
+       if ( b[j]>a[j])
+            break;
+
+2-> my approach optimal
+while(i < n1 && j < n2)
+   while (j < n2 &&  (a[i]!=b[j]))
+       j++;
+   if(j == n2 ) break;
+   if(a[i]==b[j])
+       ans.add(a[i])
+         i++ and j ++
+   else
+       i++
+3-> standard 2 pointer
+while(i < n1)
+   i < j --> i++
+   j < i --> j++
+   i==j --> add a[i] --> i++ and j ++
+  */
+
+vector<int> intersection1(vector<int> a, vector<int> b)
+{
+    int n1 = a.size();
+    int n2 = b.size();
+    int i = 0, j = 0;
+    vector<int> visited(n2, 0);
+    vector<int> ans;
+    for (int i = 0; i < n1; i++)
+    {
+        for (int j = 0; j < n2; j++)
+        {
+            if (a[i] == b[j] && visited[j] == 0)
+            {
+                ans.push_back(a[i]);
+                visited[j] = 1;
+                break;
+            }
+            if (b[j] > a[i])
+                break;
+        }
+    }
+    return ans;
+}
+vector<int> intersection2(vector<int> a, vector<int> b)
+{
+    int n1 = a.size();
+    int n2 = b.size();
+    int i = 0, j = 0;
+    vector<int> ans;
+    while (i < n1 && j < n2)
+    {
+        while ((j < n2) && (b[j] < a[i]))
+        {
+            j++;
+        }
+        if (j == n2)
+            break;
+        else if (a[i] == b[j])
+        {
+            ans.push_back(a[i]);
+            i++;
+            j++;
+        }
+        else
+            i++;
+    }
+    return ans;
+}
+vector<int> intersection3(vector<int> a, vector<int> b)
+{
+    int n1 = a.size();
+    int n2 = b.size();
+
+    int i = 0;
+    int j = 0;
+
+    vector<int> ans;
+
+    while (i < n1 && j < n2)
+    {
+        if (a[i] < b[j])
+        {
+            i++;
+        }
+        else if (a[i] > b[j])
+        {
+            j++;
+        }
+        else
+        {
+            ans.push_back(a[i]);
+            i++;
+            j++;
+        }
+    }
+
+    return ans;
+}
+
+//============================================================================
 int main()
 {
 
